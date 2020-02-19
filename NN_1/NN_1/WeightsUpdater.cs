@@ -10,23 +10,23 @@ namespace NN_1
     {
         public static void SetRandomWeights(float min, float max, INetwork network)
         {
-            Perceptron[,] percs = network.GetPerceptrons();
-            Perceptron[] outputs = network.GetOutputs();
+            Perceptron[,] percs = network.Perceptrons;
+            Perceptron[] outputs = network.Outputs;
             Random random = new Random();
 
             foreach (Perceptron p in percs)
             {
-                for (int y = 0; y < network.GetHeight(); y++)
+                for (int y = 0; y < p.Weights.Length; y++)
                 {
-                    p.SetWeight(y, RandomFloat(min, max, random));
+                    p.Weights[y] =  RandomFloat(min, max, random);
                 }                
             }
 
             foreach (Perceptron p in outputs)
             {
-                for (int y = 0; y < network.GetHeight(); y++)
+                for (int y = 0; y < network.Height; y++)
                 {
-                    p.SetWeight(y, RandomFloat(min, max, random));
+                    p.Weights[y] = RandomFloat(min, max, random);
                 }
             }
         }

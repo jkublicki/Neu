@@ -20,6 +20,18 @@ namespace NN_1
             }
         }
 
+        public void SmallTest()
+        {
+            ushort x = Tools.UShortMath.Algebra(63000, 63, '/');
+            Console.WriteLine("x = " + x.ToString());
+
+            Perceptron p = new Perceptron(3);
+
+            p.Weights = new float[3] { 0.1f, 0.2f, 0.3f };
+
+            Console.WriteLine("w " + p.Weights[0].ToString());
+        }
+
         public void MakeTest()
         {
 
@@ -35,34 +47,34 @@ namespace NN_1
                 WeightsUpdater.SetRandomWeights(-10.0f, 10.0f, n);
 
                 //f(0, 0) = 0
-                n.SetInput(0, 0.0f);
-                n.SetInput(1, 0.0f);
+                n.Inputs = new float[] { 0.0f, 0.0f };
+
                 Calculator.SetNetworkValues(n);
-                if(!AreFloatsEqual(n.GetOutputValue(0), 0.0f, 0.001f))
+                if(!AreFloatsEqual(n.Outputs[0].Output, 0.0f, 0.001f))
                 {
                     success = false;
                 }
                 //f(1, 0) = 1
-                n.SetInput(0, 1.0f);
-                n.SetInput(1, 0.0f);
+                n.Inputs = new float[] { 1.0f, 0.0f };
+
                 Calculator.SetNetworkValues(n);
-                if (!AreFloatsEqual(n.GetOutputValue(0), 1.0f, 0.001f))
+                if (!AreFloatsEqual(n.Outputs[0].Output, 1.0f, 0.001f))
                 {
                     success = false;
                 }
                 //f(0, 1) = 1
-                n.SetInput(0, 0.0f);
-                n.SetInput(1, 1.0f);
+                n.Inputs = new float[] { 0.0f, 1.0f };
+
                 Calculator.SetNetworkValues(n);
-                if (!AreFloatsEqual(n.GetOutputValue(0), 1.0f, 0.001f))
+                if (!AreFloatsEqual(n.Outputs[0].Output, 1.0f, 0.001f))
                 {
                     success = false;
                 }
                 //f(1, 1) = 0
-                n.SetInput(0, 1.0f);
-                n.SetInput(1, 1.0f);
+                n.Inputs = new float[] { 1.0f, 1.0f };
+
                 Calculator.SetNetworkValues(n);
-                if (!AreFloatsEqual(n.GetOutputValue(0), 0.0f, 0.001f))
+                if (!AreFloatsEqual(n.Outputs[0].Output, 0.0f, 0.001f))
                 {
                     success = false;
                 }

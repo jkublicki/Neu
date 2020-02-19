@@ -11,7 +11,13 @@ namespace NN_1
      * - access: może zamiast miliona metod dostępowych do private, można by to ograć public, readonly itp. 
      * -- ale może jest jakas korzyść z obecnego podejścia
      * --- powinno to zostać przerobiona na properties: https://www.w3schools.com/cs/cs_properties.asp
+     * ---- decyzja o access / uzyciu properties: https://stackoverflow.com/questions/4142867/what-is-the-difference-between-a-property-and-a-variable
+     * ----- mieć zmienne prywatne, gety i sety
      * ---- wyeliminować redundantne properties
+     * 
+     * --random float i floats equal powinny wylecieć do toolsów
+     * 
+     * --niedokończone zastępowanie pojęcia Perceptron.Value pojęciem Perceptron.Output
      * 
      * - TODO w klasach metody powinny mieć walidację parametrów po wywołaniu, np. czy indeks wykracza
      * -- rzucać błędy i w ich treści aktualne argumenty dla których funkcja się wykrzaczyła
@@ -47,75 +53,26 @@ namespace NN_1
 
     public class Perceptron
     {
-        private int x;
-        private int y;
-        private float value;
-        private Weight[] weights;
+        private float output; //ignorować odpowiedź o property, wynika z tego, że get i set są (póki co!) trywialne
+        public float Output
+        { get { return output; } set { output = value; } }
 
-        public Perceptron(int n_x, int n_y, int height)
+        //klasa konsumująca musi zadbać o zgodność indeksu Weights ze swoim indeksem neuronów
+        //przykład:
+        //sieć ma X warstw po Y neuronów; obliczając wartość neuronu na pozycji (x1, y1) 
+        //iterujemy po neuronach od (x1 - 1, 0) do (x1 - 1, Y - 1) aby uzyskać ich Value
+        //i jednocześnie tą samą zmienną iteracyjną po Weights od 0 do Y - 1
+        private float[] weights;
+        public float[] Weights 
+        { get { return weights; } set { Array.Copy(value, weights, weights.Length); } }
+
+        public Perceptron(int weightsLength)
         {
-            x = n_x;
-            y = n_y;
-            value = 1.0f;
-            weights = new Weight[height];
-
-            for (int y = 0; y < weights.Length; y++)
+            output = 1.0f;
+            weights = new float[weightsLength];
+            for (int y = 0; y < weightsLength; y++)
             {
-                weights[y].SetY(y);
-                weights[y].SetWeight(1.0f);
-            }
-        }
-
-        public void SetValue(float n_value)
-        {
-            value = n_value;
-        }
-
-        public float GetValue()
-        {
-            return value;
-        }
-
-        public void SetWeight(int y, float weight)
-        {
-            weights[y].SetWeight(weight);
-        }
-
-        public float GetWeight(int y)
-        {
-            return weights[y].GetWeight();
-        }
-
-        public float[] GetWeights()
-        {
-            float[] r = new float[weights.Length];
-            for (int y = 0; y < weights.Length; y++)
-            {
-                r[y] = weights[y].GetWeight();
-            }
-            return r;
-        }
-
-        private struct Weight
-        {
-            private int y;
-            private float weight;
-
-            public void SetY(int n_y)
-            {
-                y = n_y;
-            }
-            public int GetY()
-            {
-                return y;
-            }
-            public void SetWeight(float n_weight)
-            {
-                weight = n_weight;
-            }
-            public float GetWeight()
-            {
-                return weight;
+                weights[y] = 1.0f;
             }
         }
     }
