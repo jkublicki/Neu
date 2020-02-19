@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace NN_1
 {
+    //dane sieci + specyficzna funkcja
     public class NetworkTypeA : Network, INetwork //jak Network, ale ze specyficzną funkcją
     {
         public NetworkTypeA(int n_width, int n_height, int n_outputsHeight) : base(n_width, n_height, n_outputsHeight)

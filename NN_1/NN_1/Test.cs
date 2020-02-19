@@ -30,6 +30,8 @@ namespace NN_1
             p.Weights = new float[3] { 0.1f, 0.2f, 0.3f };
 
             Console.WriteLine("w " + p.Weights[0].ToString());
+
+            //NetworkTypeA n1 = new NetworkTypeA(500, 500, 1);
         }
 
         public void MakeTest()

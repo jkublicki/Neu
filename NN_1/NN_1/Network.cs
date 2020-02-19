@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace NN_1
 {
+    //dane sieci
     public class Network
     {
         private int width;
