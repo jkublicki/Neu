@@ -1,0 +1,10 @@
+C:\Users\jaroslawk\source\repos\NN_1\NN_1\bin\Debug\NN_1.exe.config
+C:\Users\jaroslawk\source\repos\NN_1\NN_1\bin\Debug\NN_1.exe
+C:\Users\jaroslawk\source\repos\NN_1\NN_1\bin\Debug\NN_1.pdb
+C:\Users\jaroslawk\source\repos\NN_1\NN_1\obj\Debug\NN_1.csprojAssemblyReference.cache
+C:\Users\jaroslawk\source\repos\NN_1\NN_1\obj\Debug\NN_1.Form1.resources
+C:\Users\jaroslawk\source\repos\NN_1\NN_1\obj\Debug\NN_1.Properties.Resources.resources
+C:\Users\jaroslawk\source\repos\NN_1\NN_1\obj\Debug\NN_1.csproj.GenerateResource.cache
+C:\Users\jaroslawk\source\repos\NN_1\NN_1\obj\Debug\NN_1.csproj.CoreCompileInputs.cache
+C:\Users\jaroslawk\source\repos\NN_1\NN_1\obj\Debug\NN_1.exe
+C:\Users\jaroslawk\source\repos\NN_1\NN_1\obj\Debug\NN_1.pdb
