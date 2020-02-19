@@ -1,0 +1,117 @@
+#### jedyna notatka projektowa ####
+
+### OPIS ------------------------------------------------------------------------------------------------------------
+
+## access
+- co tylko się da, powinno być private
+- odszedłem od prymitywnego podejścia Class A { private int b; public int GetB {return b;} } na rzecz properties
+-- properties: https://www.w3schools.com/cs/cs_properties.asp
+--- dlaczego properties: https://stackoverflow.com/questions/4142867/what-is-the-difference-between-a-property-and-a-variable [1]
+- sposób uzycia properties: Class A { private int b; public int B { get { return b; } set { b = value; } } } 
+-- i nie upraszczać tego, pomimo podpowiedzi VS! ma być zmienna prywatna i property z rozwiniętym get i set 
+--- o ile koniecznie musi być set, może wystarczy ustawianie konstruktorem; skąpo rozdawać set i nawet get
+--- argumenty jak w linku [1], a dodatkowo problemy po usunięciu takich jak private int b
+
+
+## organizacja projektu
+dodawać podfoldery przez solution explorera VS
+
+
+## koncepcja
+Perceptron - trzyma dane perceptronu, uniwersalne 
+Network - trzyma dane sieci, uniwersalne
+NetworkTypeA - specyficzne, dziedziczy po Network i ma specyficzną funkcję aktywacji, ale implementuje uniwersalny iterfejs INetwork; będzie takich tyle, ile funkcji aktywacji
+INetwork - uniwersalny interfejs dla ww.
+Calculator - ustawia dane sieci, konkretnie ustawia perceptrony i wyjścia; zakłada, że sieć ma ustawione wejścia; uniwersalne (wymaga implementacji INetwork)
+WeightsUpdater - ustawia wartości wag perceptronów i wyjść, uniwersalne (wymaga implementacji INetwork)
+
+
+## założenia (aktualizacja 19.02.2020)
+Ilość perceptronów w warstwach między wejściem a wyjściem jest identyczna. Kolejne warstwy: x, maksimum to szerokość sieci; kolejne perceptrony w warstwie: y, maksimum to wysokość sieci; w takiej macierzy warstwa jest kolumną 
+Ilość wyjść może być mniejsza niż wysokość sieci (ilość perceptronów w warstwie)
+
+
+### BRUDNOPIS ------------------------------------------------------------------------------------------------------------
+
+## todo stan na 19.02.2020
+
+# ogólnie
+- zrobić bardzo porządną podstawę, a dopiero potem iść dalej, bo tam będzie magma
+
+# drobne
+- random float i floats equal powinny wylecieć do toolsów
+- niedokończone zastępowanie pojęcia Perceptron.Value pojęciem Perceptron.Output
+- w klasach metody powinny mieć walidację parametrów po wywołaniu, np. czy indeks wykracza
+-- rzucać błędy i w ich treści aktualne argumenty dla których funkcja się wykrzaczyła
+- WAŻNE - RAM przy wymiarach 1000x1000 jest out of memory exception na samym tworzeniu sieci
+- chyba błędnie zakładam, że wysokość macierzy inputów będzie zawsze równa wysokości macierzy neuronów - doczytać jak się robi
+-- mniejsza
+-- większa?
+
+### status 18.02.2020 ###
+- działa! w Test.cs udało się uczenie funkcji AND, OR, XOR na sieci (1 x 2)
+- widać, że brakuje b. wielu warstw jeszcze
+
+
+### BACKLOG ------------------------------------------------------------------------------------------------------------
+
+jak działać ponad poziomem jednej sieci?
+
+# pewny model danych
+
+- input [1]
+-- id
+-- value
+
+- output [1]
+-- id
+-- value
+
+- input_set [1]
+-- id
+-- input.id
+
+- output_set [1]
+-- id
+-- output.id
+
+- in_out_pair
+-- id
+-- input_set.id
+-- output_set.id
+
+# mniej pewny *
+
+- in_out_pair_eval
+-- in_out_pair.id
+-- result, gdzie result = game(in_out_pair.id)
+
+- trial //życiowa próba sieci z określonym zestawem wag
+-- id
+-- in_out_pair_eval.id
+-- score, gdzie score proporcjonalny do in_out_pair_eval.result i odwrotnie proporcjonalny do ilości in_out_pair_eval.id
+
+* da się zaimplementować grę w unikanie ścian, a czy da się OR / XOR / AND?
+
+
+
+# uwagi
+
+[1] prawdopodobnie zbędne, wystarczy in_out_pair { float[] input set; float[] output set; }
+
+
+
+## brudnopis 
+
+# xor
+
+pary in-out
+{ {0, 0}; {0} }
+{ {0, 1}; {1} }
+{ {1, 0}; {1} }
+{ {1, 1}; {0} }
+
+in_out_pair_eval
+
+
+
