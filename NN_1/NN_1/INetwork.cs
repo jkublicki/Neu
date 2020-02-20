@@ -17,6 +17,6 @@ namespace NN_1
         float[] Inputs { get; set; }
         Perceptron[] Outputs { get; }
         float TresholdFunction(float value);     
-        float[] GetColumnValues(int x);
+        float[] GetColumnOutputs(int x);
     }
 }

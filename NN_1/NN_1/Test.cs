@@ -8,18 +8,6 @@ namespace NN_1
 {
     class Test
     {
-        private bool AreFloatsEqual(float a, float b, float error)
-        {
-            if(Math.Abs(a - b) < error)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public void SmallTest()
         {
             ushort x = Tools.UShortMath.Algebra(63000, 63, '/');
@@ -40,7 +28,7 @@ namespace NN_1
 
             Console.WriteLine("\r\n------ TEST: początek --------------");
 
-            NetworkTypeA n = new NetworkTypeA(1, 2, 1);
+            NetworkTypeA n = new NetworkTypeA(2, 2, 1);
 
             for (int i = 0; i < 100000; i++)
             {
@@ -51,32 +39,32 @@ namespace NN_1
                 //f(0, 0) = 0
                 n.Inputs = new float[] { 0.0f, 0.0f };
 
-                Calculator.SetNetworkValues(n);
-                if(!AreFloatsEqual(n.Outputs[0].Output, 0.0f, 0.001f))
+                Calculator.SetAllPerceptronOutputs(n);
+                if(!Tools.FloatsEqual.AreFloatsEqual(n.Outputs[0].Output, 0.0f, 0.001f))
                 {
                     success = false;
                 }
                 //f(1, 0) = 1
                 n.Inputs = new float[] { 1.0f, 0.0f };
 
-                Calculator.SetNetworkValues(n);
-                if (!AreFloatsEqual(n.Outputs[0].Output, 1.0f, 0.001f))
+                Calculator.SetAllPerceptronOutputs(n);
+                if (!Tools.FloatsEqual.AreFloatsEqual(n.Outputs[0].Output, 1.0f, 0.001f))
                 {
                     success = false;
                 }
                 //f(0, 1) = 1
                 n.Inputs = new float[] { 0.0f, 1.0f };
 
-                Calculator.SetNetworkValues(n);
-                if (!AreFloatsEqual(n.Outputs[0].Output, 1.0f, 0.001f))
+                Calculator.SetAllPerceptronOutputs(n);
+                if (!Tools.FloatsEqual.AreFloatsEqual(n.Outputs[0].Output, 1.0f, 0.001f))
                 {
                     success = false;
                 }
                 //f(1, 1) = 0
                 n.Inputs = new float[] { 1.0f, 1.0f };
 
-                Calculator.SetNetworkValues(n);
-                if (!AreFloatsEqual(n.Outputs[0].Output, 0.0f, 0.001f))
+                Calculator.SetAllPerceptronOutputs(n);
+                if (!Tools.FloatsEqual.AreFloatsEqual(n.Outputs[0].Output, 0.0f, 0.001f))
                 {
                     success = false;
                 }

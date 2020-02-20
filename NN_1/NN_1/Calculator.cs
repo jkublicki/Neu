@@ -8,14 +8,14 @@ namespace NN_1
 {
     public static class Calculator
     {
-        public static void SetNetworkValues(INetwork network)
+        public static void SetAllPerceptronOutputs(INetwork network)
         {
             Perceptron[,] percs = network.Perceptrons;            
 
             for (int y = 0; y < network.Height; y++) //dla rzędu x = 0, który czerpie z inputów
             {
-                float value = GetPerceptronOutput(network.Inputs, percs[0, y].Weights, network);
-                percs[0, y].Output = value;
+                float output = GetPerceptronOutput(network.Inputs, percs[0, y].Weights, network);
+                percs[0, y].Output = output;
             }
 
             if (network.Width > 1) //o ile istnieje więcej rzędów
@@ -24,27 +24,27 @@ namespace NN_1
                 {
                     for (int y = 0; y < network.Height; y++)
                     {
-                        float value = GetPerceptronOutput(network.GetColumnValues(x - 1), percs[x, y].Weights, network);
-                        percs[x, y].Output = value;
+                        float output = GetPerceptronOutput(network.GetColumnOutputs(x - 1), percs[x, y].Weights, network);
+                        percs[x, y].Output = output;
                     }
                 }
             }
-
-            for (int y = 0; y < network.Outputs.Length; y++)
+            
+            for (int y = 0; y < network.Outputs.Length; y++) //outputy sieci
             {
-                float value = GetPerceptronOutput(network.GetColumnValues(network.Width - 1), network.Outputs[y].Weights, network);
-                network.Outputs[y].Output = value;
+                float output = GetPerceptronOutput(network.GetColumnOutputs(network.Width - 1), network.Outputs[y].Weights, network);
+                network.Outputs[y].Output = output;
             }
         }
 
-        private static float GetPerceptronOutput(float[] sourceValues, float[] weights, INetwork network)
+        private static float GetPerceptronOutput(float[] sourceOutputs, float[] weights, INetwork network)
         {
-            float value = 0.0f;
-            for (int y = 0; y < sourceValues.Length; y++)
+            float output = 0.0f;
+            for (int y = 0; y < sourceOutputs.Length; y++)
             {
-                value += sourceValues[y] * weights[y];
+                output += sourceOutputs[y] * weights[y];
             }
-            return network.TresholdFunction(value);
+            return network.TresholdFunction(output);
         }
     }
 }

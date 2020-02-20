@@ -18,7 +18,7 @@ namespace NN_1
             {
                 for (int y = 0; y < p.Weights.Length; y++)
                 {
-                    p.Weights[y] =  RandomFloat(min, max, random);
+                    p.Weights[y] =  Tools.Rand.RandomFloat(min, max, random);
                 }                
             }
 
@@ -26,17 +26,11 @@ namespace NN_1
             {
                 for (int y = 0; y < network.Height; y++)
                 {
-                    p.Weights[y] = RandomFloat(min, max, random);
+                    p.Weights[y] = Tools.Rand.RandomFloat(min, max, random);
                 }
             }
         }
 
-        private static float RandomFloat(float min, float max, Random random)
-        {
-            float x = (float)random.NextDouble();
-            float d = max - min;
-            float r = min + d * x;
-            return r;
-        }
+        
     }
 }

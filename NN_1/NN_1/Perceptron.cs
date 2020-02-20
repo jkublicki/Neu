@@ -16,7 +16,7 @@ namespace NN_1
         //klasa konsumująca musi zadbać o zgodność indeksu Weights ze swoim indeksem neuronów
         //przykład:
         //sieć ma X warstw po Y neuronów; obliczając wartość neuronu na pozycji (x1, y1) 
-        //iterujemy po neuronach od (x1 - 1, 0) do (x1 - 1, Y - 1) aby uzyskać ich Value
+        //iterujemy po neuronach od (x1 - 1, 0) do (x1 - 1, Y - 1) aby uzyskać ich Output
         //i jednocześnie tą samą zmienną iteracyjną po Weights od 0 do Y - 1
         private float[] weights;
         public float[] Weights 

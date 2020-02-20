@@ -45,7 +45,7 @@ namespace NN_1
             }
         }
 
-        public float[] GetColumnValues(int x)
+        public float[] GetColumnOutputs(int x)
         {
             float[] r = new float[height];
 
@@ -91,7 +91,7 @@ namespace NN_1
             {
                 for (int y = 0; y < height; y++)
                 {
-                    r += "p_x" + x.ToString() + "_y" + y.ToString() + " Value = " + perceptrons[x, y].Output.ToString() + ", Weights: ";
+                    r += "p_x" + x.ToString() + "_y" + y.ToString() + " Output = " + perceptrons[x, y].Output.ToString() + ", Weights: ";
 
                     for (int y1 = 0; y1 < height; y1++)
                     {

@@ -39,8 +39,9 @@ Ilość wyjść może być mniejsza niż wysokość sieci (ilość perceptronów
 - zrobić bardzo porządną podstawę, a dopiero potem iść dalej, bo tam będzie magma
 
 # drobne
-- random float i floats equal powinny wylecieć do toolsów
-- niedokończone zastępowanie pojęcia Perceptron.Value pojęciem Perceptron.Output
+//- random float i floats equal powinny wylecieć do toolsów
+//- niedokończone zastępowanie pojęcia Perceptron.Value pojęciem Perceptron.Output
+- unit tests
 - w klasach metody powinny mieć walidację parametrów po wywołaniu, np. czy indeks wykracza
 -- rzucać błędy i w ich treści aktualne argumenty dla których funkcja się wykrzaczyła
 - WAŻNE - RAM przy wymiarach 1000x1000 jest out of memory exception na samym tworzeniu sieci
@@ -115,3 +116,26 @@ in_out_pair_eval
 
 
 
+# ogólnie jak działać??
+
+1. wytworzyć jakoś sieć (sparametryzowaną instancję)
+
+2. wytworzyć dla niej jakąś sytuację (zestaw inputów)
+- wziąć z listy sytuacji
+- generuje to "gra"
+- losować?
+
+3. niech sieć wybierze akcję dla tej sytuacji (określi output)
+
+4. określić rezultat wykonania takiej akcji w zadanej sytuacji
+- iść po liście trójek sytuacja + wyjście + rezultat
+-- przykłady
+--- np. jesteś blisko prawej ściany + idź w prawo + porażka (gra w unikanie ścian)
+--- np. 1, 1 + 0 + sukces (XOR)
+-- ale..
+--- czy mam przewidywać wszystkie możliwe trójki? dużo pracy plus sieć nigdy nie wymyśli nic sama, plus bez sensu, bo od rozpisania tego niedaleko do implementacji bez uzycia sieci
+---- gra zawsze określi rezultat
+---- przy poszukiwaniu funkcji XOR grą jest funkcja poprawnie implementująca XOR
+
+
+rinse and repeat
